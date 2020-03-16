@@ -1,0 +1,11 @@
+  corona.planblick.svc:
+    build: .
+    environment:
+      USERNAME: crowdsoft
+      TEAM: 240625
+      POWER: light
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+    - "7397:7396/tcp"

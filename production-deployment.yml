@@ -1,0 +1,59 @@
+kind: "DeploymentConfig"
+apiVersion: "v1"
+metadata:
+  name: "foldathome"
+spec:
+  template:
+    metadata:
+      name: "foldathome"
+      namespace: "planblick"
+      labels:
+        app: "foldathome"
+        deploymentconfig: "foldathome"
+        deploymenttime: "deployment_time_placeholder"
+    spec:
+      containers:
+        - name: "foldathome"
+          image: "282615081127.dkr.ecr.eu-central-1.amazonaws.com/eventstore:latest"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+              protocol: "TCP"
+          env:
+          - name:  USERNAME
+            value: "Crowdsoft"
+          - name:  TEAM
+            value: 240625
+          - name:  POWER
+            value: "light"
+      dnsPolicy: ClusterFirst
+  replicas: 1
+  selector:
+    app: "foldathome"
+    deploymentconfig: "foldathome"
+  triggers:
+    - type: "ConfigChange"
+  strategy:
+    type: "Rolling"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: "foldathome"
+  name: "foldathome"
+  namespace: "planblick"
+spec:
+  ports:
+    - name: 8000-tcp
+      port: 8000
+      protocol: TCP
+      targetPort: 8000
+  selector:
+    app: "foldathome"
+    deploymentconfig: "foldathome"
+  type: ClusterIP
+status:
+  loadBalancer: {}
