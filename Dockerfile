@@ -1,10 +1,8 @@
 FROM debian:stable-slim
-LABEL maintainer="john.k.tims@gmail.com"
+LABEL maintainer="info@planblick.com"
 
 ENV FAH_VERSION_MINOR=7.5.1
 ENV FAH_VERSION_MAJOR=7.5
-
-ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
         curl adduser bzip2 ca-certificates &&\
@@ -20,4 +18,4 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 EXPOSE 7396
 
 ENTRYPOINT ["FAHClient", "--web-allow=0/0:7396", "--allow=0/0:7396"]
-CMD ["--user=Crowdsoft", "--team=240625", "--gpu=false", "--smp=true", "--power=light"]
+CMD ["--user=Crowdsoft-Docker-Image", "--team=240625", "--gpu=false", "--smp=true", "--power=full", "--password=foobar2000"]

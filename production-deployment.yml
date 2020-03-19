@@ -6,26 +6,18 @@ spec:
   template:
     metadata:
       name: "foldathome"
-      namespace: "shared"
+      namespace: "planblick"
       labels:
         app: "foldathome"
         deploymentconfig: "foldathome"
-        deploymenttime: "deployment_time_placeholder"
     spec:
       containers:
         - name: "foldathome"
           image: "registry.gitlab.com/fkdocker/foldathome:latest"
           imagePullPolicy: Always
           ports:
-            - containerPort: 8000
+            - containerPort: 7396
               protocol: "TCP"
-          env:
-          - name:  USERNAME
-            value: "Crowdsoft"
-          - name:  TEAM
-            value: "240625"
-          - name:  POWER
-            value: "light"
       dnsPolicy: ClusterFirst
   replicas: 1
   selector:
@@ -44,7 +36,7 @@ metadata:
   labels:
     app: "foldathome"
   name: "foldathome"
-  namespace: "shared"
+  namespace: "planblick"
 spec:
   ports:
     - name: 7396-tcp
