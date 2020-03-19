@@ -1,5 +1,5 @@
   corona.crowdsoft.net:
-    build: .
+    image: planblick2/foldathome
     restart: always
     ports:
     - "7396:7396/tcp"

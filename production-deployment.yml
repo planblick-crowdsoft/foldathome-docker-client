@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: "foldathome"
-          image: "registry.gitlab.com/fkdocker/foldathome:latest"
+          image: "planblick2/foldathome:latest"
           imagePullPolicy: Always
           ports:
             - containerPort: 7396
